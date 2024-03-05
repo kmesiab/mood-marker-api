@@ -1,0 +1,9 @@
+app/env
+data
+terraform
+Makefile
+Dockerfile
+README.md
+.gitignore
+.git
+*.md

@@ -1,0 +1,6 @@
+textblob
+contractions
+nrclex
+vaderSentiment
+flask
+gunicorn

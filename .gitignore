@@ -1,0 +1,10 @@
+.idea
+.aws-sam
+.terraform
+/terraform/.terraform.lock.hcl
+app/env
+data
+build
+
+*.tfstate
+*.backup
