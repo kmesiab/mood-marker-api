@@ -25,6 +25,13 @@ tf plan
    2. Subnet 2
 
 ---
+
+## Configure:
+
+Update `route_53_hosted_zone_id` with your own hosted zone.
+Modify all references to the domain name `langtool.net`
+
+---
 ## Outputs
 
 ### app_url
@@ -33,3 +40,5 @@ tf plan
 
 ### repository_url
 `462498369025.dkr.ecr.us-west-2.amazonaws.com/mood-marker-api`
+
+# [DRAFT]
