@@ -1,5 +1,16 @@
 # Mood Marker API 🃏
 
+- [Mood Marker API 🃏](#mood-marker-api-)
+  - [Analyze Sentiment](#analyze-sentiment)
+  - [Extract Named Entities](#extract-named-entities)
+  - [Noun Phrases](#noun-phrases)
+- [Getting Started 🏠](#getting-started-)
+- [Deploying Docker to AWS ECR 📦](#deploying-docker-to-aws-ecr-)
+  - [Authenticate with AWS ECR 🔑](#authenticate-with-aws-ecr-)
+  - [Build and deploy the Docker image to AWS 🚀](#build-and-deploy-the-docker-image-to-aws-)
+- [Deploying Task to AWS ECS 🌐](#deploying-task-to-aws-ecs-)
+
+
 **The Mood Marker API is a powerful, lightweight Natural Language
 Processing (NLP) API** tailored for seamless integration and deployment on AWS.
 
@@ -88,6 +99,32 @@ Errors will follow this format:
 ```json
 {
   "error": "No body found in the request."
+}
+```
+
+## Noun Phrases
+
+To extract the nouns and their roots:
+
+```bash
+curl -X POST http://localhost/nouns -d "text=The quick brown fox..."
+```
+
+```json
+{
+  "noun_phrases": [
+    {
+      "root_dep": "nsubj",
+      "root_text": "fox",
+      "text": "The quick brown fox"
+    },
+    {
+      "root_dep": "pobj",
+      "root_text": "dog",
+      "text": "the lazy dog"
+    }
+  ],
+  "text": "The quick brown fox jumped over the lazy dog"
 }
 ```
 

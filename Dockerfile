@@ -32,4 +32,4 @@ RUN python -m nltk.downloader vader_lexicon punkt
 EXPOSE 80
 
 # Run gunicorn and bind it to port 80
-CMD ["gunicorn", "--bind", "0.0.0.0:80", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "main:app"]
