@@ -51,3 +51,26 @@ resource "aws_security_group" "mood_marker_api_sg" {
     Name = "my-security-group"
   }
 }
+
+resource "aws_route_table" "mood_marker_api_rt" {
+  vpc_id = aws_vpc.mood_marker_api_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.mood_marker_api_igw.id
+  }
+
+  tags = {
+    Name = "mood-marker-api-rt"
+  }
+}
+
+resource "aws_route_table_association" "mood_marker_api_rta_subnet_1" {
+  subnet_id      = aws_subnet.mood_marker_api_subnet_1.id
+  route_table_id = aws_route_table.mood_marker_api_rt.id
+}
+
+resource "aws_route_table_association" "mood_marker_api_rta_subnet_2" {
+  subnet_id      = aws_subnet.mood_marker_api_subnet_2.id
+  route_table_id = aws_route_table.mood_marker_api_rt.id
+}

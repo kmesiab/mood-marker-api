@@ -1,39 +1,43 @@
-# Mood Marker API
+# Mood Marker API 🃏
 
+**The Mood Marker API is a powerful, lightweight Natural Language
+Processing (NLP) API** tailored for seamless integration and deployment on AWS.
 
-## Running Locally 🏠
+It offers a suite of endpoints for conducting essential NLP tasks, including
+sentiment analysis and Named Entity Recognition (NER), designed to enhance
+your applications with the capability to understand and interpret the
+emotional and factual content of text data.
 
-Run `make docker-up` to start the application and its dependencies.
+## 🚀 Analyze Sentiment
+
+To perform sentiment analysis, use the curl command as follows:
 
 ```bash
-make docker-up
+curl -X POST http://localhost/sentiment -d "text=this is text to be analyzed"
 ```
 
-You can now analyze sentiment:
+This endpoint expects a form `POST` with the `text` field containing the text
+you wish to analyze. It returns a detailed JSON object with the original text,
+a comprehensive VADER sentiment score, and emotion scores to quantify the
+sentiment of the input text accurately.
 
-```bash
-curl -X POST http://localhost/sentiment -d "body=this is text to be analyzed" 
-```
-
-The endpoint expects a URL Encoded Form post with the `text` property being
-set to the text to be analyzed for sentiment.
-
-The response is a JSON object containing the analyzed text, a VADER score,
-and the emotion scores returned in JSON:
+Example of a successful response:
 
 ```json
 {
   "emotion_scores": {
-    "positive": 3,
-    "trust": 2
+    "anticipation": 1,
+    "joy": 3,
+    "positive": 5,
+    "surprise": 1
   },
+  "text": "Despite the grey skies, John and Maria's wedding in Seattle was filled with joy, laughter, and an overwhelming sense of love, truly a heartwarming event.",
   "vader_emotion_scores": {
-    "compound": 0.5106,
-    "neg": 0.0,
-    "neu": 0.915,
-    "pos": 0.085
-  },
-  "text": "To automate the Docker build and push process with Terraform..."
+    "compound": 0.952,
+    "neg": 0.031,
+    "neu": 0.509,
+    "pos": 0.461
+  }
 }
 ```
 
@@ -45,11 +49,73 @@ Errors will be returned in the following format:
 }
 ```
 
+## 🚀 Extract Named Entities
+
+To extract named entities from text, use the following curl command:
+
+```bash
+curl -X POST http://localhost/ner -d "text=this is text to be analyzed"
+```
+
+This endpoint accepts a URL Encoded Form post with the `text` property set
+to the text you wish to analyze for entities. It returns a JSON object
+containing the identified entities, enhancing your text's understanding.
+
+Example response:
+
+```json
+{
+  "named_entities": [
+    {
+      "label": "PERSON",
+      "text": "John"
+    },
+    {
+      "label": "PERSON",
+      "text": "Maria"
+    },
+    {
+      "label": "GPE",
+      "text": "Seattle"
+    }
+  ],
+  "text": "Despite the grey skies, John and Maria's wedding in Seattle was filled with joy, laughter, and an overwhelming sense of love, truly a heartwarming event."
+}
+```
+
+Errors will follow this format:
+
+```json
+{
+  "error": "No body found in the request."
+}
+```
+
+---
+
+## Getting Started 🏠
+
+Clone the repository, then navigate to the root directory.
+
+```bash
+git clone git@github.com:kmesiab/mood-marker-api.git && \
+cd mood-marker-api
+```
+
+To initiate the Mood Marker API and its dependencies on your local machine,
+execute the following command:
+
+```bash
+make docker-up
+```
+
+This command spins up the application, making it ready for local development
+and testing.  You can now access the API at `http://localhost`.
+
 ---
 
 ## Deploying Docker to AWS ECR 📦
 
-Create a builder instance for multi-arch builds 🏗️:
 
 Authenticate with AWS ECR 🔑:
 
@@ -65,10 +131,9 @@ make ecr-deploy
 
 ## Deploying Task to AWS ECS 🌐
 
-Executing the terraform in the `./terraform` folder will create 
-an ECS cluster with a load balancer and a task that
-runs the deployed docker container from the steps above 📈.
-
 ```bash
 cd terraform && tf init && tf apply
 ```
+
+See the ./terraform/README.md for more information on the 
+AWS infrastructure deployment.

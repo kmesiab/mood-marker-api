@@ -4,3 +4,4 @@ nrclex
 vaderSentiment
 flask
 gunicorn
+spacy
