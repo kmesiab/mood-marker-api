@@ -19,6 +19,20 @@ sentiment analysis and Named Entity Recognition (NER), designed to enhance
 your applications with the capability to understand and interpret the
 emotional and factual content of text data.
 
+## Try It Out!
+
+MoodMarkerAPI is deployed at https://langtool.net
+
+* https://langtool.net/sentiment
+* https://langtool.net/ner
+* https://langtool.net/nouns
+
+```bash
+curl --request POST \
+  --url https://langtool.net/sentiment \
+  --data 'text=Were no strangers to love. You know the rules and so do I (Do I) · Never gonna give you up. Never gonna let you down'
+```
+
 ## 🚀 Analyze Sentiment
 
 To perform sentiment analysis, use the curl command as follows:
