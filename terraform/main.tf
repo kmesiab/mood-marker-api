@@ -52,9 +52,15 @@ resource "aws_ecs_service" "mood_marker_api_service" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets         = [aws_subnet.mood_marker_api_subnet_1.id]
+    subnets         = [aws_subnet.mood_marker_api_subnet_1.id, aws_subnet.mood_marker_api_subnet_2.id]
     assign_public_ip = true
     security_groups = [aws_security_group.mood_marker_api_sg.id]
+  }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.mood_maker_api_target_group.arn
+    container_name   = "mood-marker-api"
+    container_port   = 80
   }
 
   depends_on = [
