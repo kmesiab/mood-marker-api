@@ -31,5 +31,5 @@ RUN python -m nltk.downloader vader_lexicon punkt
 # Make port 80 available to the world outside this container
 EXPOSE 80
 
-# Run gunicorn and bind it to port 80
-CMD ["gunicorn", "--bind", "0.0.0.0:80", "main:app"]
+# Run gunicorn and bind it to port 443
+CMD ["gunicorn", "--bind", "0.0.0.0:443", "main:app"]

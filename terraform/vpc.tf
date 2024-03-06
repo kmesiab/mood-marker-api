@@ -34,8 +34,8 @@ resource "aws_security_group" "mood_marker_api_sg" {
   vpc_id      = aws_vpc.mood_marker_api_vpc.id
 
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = 443
+    to_port     = 443
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

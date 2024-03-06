@@ -1,14 +1,19 @@
 # Terraform
 
-## ECR Registry
+This API runs in an AWS ECS cluster with an internet gateway
+and an application load balancer.  It lives in one VPC
+with two subnets in two availability zones.
 
-`mood-marker-api`
+## Getting Started
+
+Navigate to the `./terraform` folder and run 
 
 ```bash
-462498369025.dkr.ecr.us-west-2.amazonaws.com/mood-marker-api
+tf init
+tf plan
 ```
 
-## Resources
+## Resources To Be Created
 
 1. Load Balancer
 2. Internet Gateway

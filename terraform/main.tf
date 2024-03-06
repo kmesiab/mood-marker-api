@@ -8,6 +8,10 @@ terraform {
   }
 }
 
+provider aws {
+  region  = var.region
+}
+
 resource "aws_ecs_cluster" "mood_marker_api_cluster" {
   name = "mood-marker-api-cluster"
 }
@@ -60,7 +64,7 @@ resource "aws_ecs_service" "mood_marker_api_service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.mood_maker_api_target_group.arn
     container_name   = "mood-marker-api"
-    container_port   = 80
+    container_port   = 443
   }
 
   depends_on = [

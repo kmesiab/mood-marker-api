@@ -15,8 +15,8 @@ resource "aws_ecs_task_definition" "mood_marker_api_task" {
       essential = true
       portMappings = [
         {
-          containerPort = 80
-          hostPort      = 80
+          containerPort = 443
+          hostPort      = 443
           protocol      = "tcp"
         },
       ]

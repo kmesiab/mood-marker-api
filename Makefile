@@ -8,7 +8,7 @@ docker-build:
 
 docker-run:
 	@echo "Running the Docker container..."
-	@docker run -p 80:80 mood-marker-api:latest
+	@docker run -p 80:443 mood-marker-api:latest
 
 ecr-deploy: ecr-auth ecr-build-push
 
